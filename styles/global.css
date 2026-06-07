@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --content-primary: #FFFFFF;
+    --content-secondary: #C7C9CC;
+    --content-tertiary: #D9D9D9;
+    --content-brand: #C58DE7;
+    --color-inverse: #030203;
+    --background-primary: #020202;
+    --background-primary-alpha: #020202dc;
+    --background-secondary: #111012;
+    --background-tertiary: #24222E;
+    --background-brand: #C58DE7;
+    --background-gray: #3D3D3D;
+    --gradient-background: linear-gradient(90deg, #D586E0 0%, #91A1FA 98.93%);
+    --gradient-content: linear-gradient(90deg, #C7C9CC 0%, #3D3D3D 100%);
+
+    --ff-sora: "Sora", sans-serif;
+    --logo: 800 24px/130% var(--ff-sora);
+    --display-lg: 800 40px/130% var(--ff-sora); /* modified */
+    --display-md: 800 40px/130% var(--ff-sora);
+    --display-sm: 700 32px/130% var(--ff-sora);
+
+    --ff-roboto-mono: "Roboto Mono", monospace;
+    --overline: 700 16px/150% var(--ff-roboto-mono);
+
+    --ff-roboto-flex: "Roboto Flex", sans-serif;
+    --paragraph-lg: 500 16px/150% var(--ff-roboto-flex); /* modified */
+    --paragraph-md: 500 14px/150% var(--ff-roboto-flex);
+    --paragraph-sm: 500 12px/150% var(--ff-roboto-flex);
+    --label-lg: 700 20px/150% var(--ff-roboto-flex);
+    --label-md: 700 16px/150% var(--ff-roboto-flex); /*  not modified */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;    
+}
+
+.container {
+    max-width: 390px;
+    padding-inline: 28px;
+    margin-inline: auto;
+}
+
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--background-tertiary);
+    border-radius: 8px;
+    padding-block: 16px;
+    border: none;
+    font: var(--label-md);
+    color: var(--content-primary);
+    cursor: pointer;
+    &:hover {
+        background-color: var(--background-secondary);
+        outline: 2px solid var(--background-brand);
+    }
+}
+
+
+@media (width >= 1280px) {
+    :root {
+        --display-lg: 800 72px/130% var(--ff-sora);
+        --display-md: 800 40px/130% var(--ff-sora);
+        --display-sm: 700 32px/130% var(--ff-sora);
+
+        --overline: 700 16px/150% var(--ff-roboto-mono);
+
+        --paragraph-lg: 400 16px/150% var(--ff-roboto-flex);
+        --paragraph-md: 400 14px/150% var(--ff-roboto-flex);
+        --paragraph-sm: 400 12px/150% var(--ff-roboto-flex);
+        --label-md: 700 20px/150% var(--ff-roboto-flex);
+        --label-md: 700 16px/150% var(--ff-roboto-flex);
+    }
+
+    .container {
+        max-width: 1098px;
+    }
+}
