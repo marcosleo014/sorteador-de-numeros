@@ -159,7 +159,7 @@ body {
     }
 }
 
-/* ---------------------- section faq ---------------------- */
+/* ---------------------- section result ---------------------- */
 .result {
     .header-result {
     text-align: center;
@@ -176,16 +176,17 @@ body {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 4px;
+        gap: 10px;
         padding-block: 40px;
         li {
-            padding-inline: 13px;
+            padding: 5px 20px;
             font: 700 48px/150% var(--ff-roboto-mono);
             color: var(--content-brand);
         }
     }
 }
 
+/* -------------------- section faq ------------ */
 .faq {
     display: flex;
     flex-direction: column;

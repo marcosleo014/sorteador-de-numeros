@@ -55,7 +55,11 @@ drawButton.onclick = (event) => {
     // -------------------------------------------------
 
     toggleSections();
-    console.log(drawnNumbers);
+    
+    // animação do resultado do sorteio
+    document.querySelectorAll('li').forEach((element, index) => {
+        startAnimation(element, 2 * index);
+    })
 };
 
 // ----------------- repetir sorteio -----------------------
@@ -75,7 +79,6 @@ drawRepeatButton.onclick = (event) => {
 })
 
 
-
 function generateRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -93,6 +96,15 @@ function toggleSections() {
 
 function addDrawnNumber(number) {
     const li = document.createElement('li');
+    const span = document.createElement('span')
     li.innerText = number.toString();
+    li.append(span)
     resultListElement.append(li);
 };
+
+function startAnimation(element, delay){
+    element.style.animationDelay = `${delay}s`
+    element.firstElementChild.style.animationDelay = `${delay}s`
+    element.classList.add('number');
+    element.firstElementChild.classList.add('backgroundNumber');
+}

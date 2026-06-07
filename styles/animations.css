@@ -1,0 +1,53 @@
+li {
+    position: relative;
+    transform: scale(0);
+}
+.number {
+    animation: number 2s both;
+} 
+
+li span {
+    display: block;
+    width: 80px;
+    height: 80px;
+    background-color: var(--background-brand);
+    border-radius: 28px;
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    z-index: -1;
+    transform: translate(50%, 50%);
+}
+.backgroundNumber {
+    animation: backgroundNumber 2s both;
+}
+
+@keyframes backgroundNumber {
+    0%, 20% {
+        transform: translate(50%, 50%) rotate(0);
+    }
+    70%, 90% {
+        transform:  translate(50%, 50%) rotate(270deg);
+    }
+    100% {
+        transform:  translate(50%, 50%) rotate(270deg) scale(0);
+    }
+}
+@keyframes number {
+    0% {
+        transform: scale(0);
+    }
+    10%, 80% {
+        transform: scale(1.2);
+    }
+    90%, 100% {
+        transform: scale(1);
+    }
+    0%, 40% {
+        color: var(--background-brand);
+    }
+    48%, 90% {
+        color: var(--color-inverse);
+    }
+    
+}
