@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="assets/icons/icon.svg" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&family=Roboto+Mono:wght@700&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
     
 </head>
 <body>
@@ -57,29 +58,31 @@
                                 <span>
                                     QUANTIDADE
                                 </span>
-                                <input type="text" id="" value="2">
+                                <input type="text" id="numbers" placeholder="5">
                             </label>
                             <label>
                                 <span>
                                     VALOR MIN
                                 </span>
-                                <input type="text" id="" value="1">
+                                <input type="text" id="minValue" placeholder="1">
                             </label>
                             <label>
                                 <span>
                                     VALOR MAX
                                 </span>
-                                <input type="text" id="" value="100">
+                                <input type="text" id="maxValue" placeholder="100">
                             </label>
                         </div>
 
                         <label class="toggle">
-                            <input type="checkbox" name="" id="">
+                            <input type="checkbox" name="" id="repeatCheckbox" checked>
                             <span class="toggle-slider"></span>
-                            <span class="toggle-label">Não repetir número</span>
+                            <span class="toggle-label">
+                                Não repetir número
+                            </span>
                         </label>
 
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn btn-draw">
                             <span>SORTEAR</span>
                             <img src="assets/icons/arrow-to-right.svg" alt="">
                         </button>
@@ -98,15 +101,10 @@
                     </header>
 
                     <ul class="result-list">
-                        <li>14</li>
-                        <li>13</li>
-                        <li>15</li>
-                        <li>06</li>
-                        <li>27</li>
-                        <li>81</li>
+                        
                     </ul>
                     
-                    <button class="btn">
+                    <button class="btn draw-repeat">
                         <span>
                             SORTEAR NOVAMENTE
                         </span>
