@@ -1,6 +1,7 @@
 li {
     position: relative;
     transform: scale(0);
+    transition: transform 1s;
 }
 .number {
     animation: number 2s both;
@@ -16,7 +17,7 @@ li span {
     bottom: 50%;
     right: 50%;
     z-index: -1;
-    transform: translate(50%, 50%);
+    transform: translate(50%, 50%) scale(0);
 }
 .backgroundNumber {
     animation: backgroundNumber 2s both;
@@ -50,4 +51,13 @@ li span {
         color: var(--color-inverse);
     }
     
+}
+
+@keyframes skipAnimation {
+    80% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
