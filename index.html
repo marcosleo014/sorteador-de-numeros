@@ -58,19 +58,19 @@
                                 <span>
                                     QUANTIDADE
                                 </span>
-                                <input type="text" id="numbers" placeholder="5">
+                                <input type="text" id="numbers" placeholder="5" inputmode="numeric">
                             </label>
                             <label>
                                 <span>
                                     VALOR MIN
                                 </span>
-                                <input type="text" id="minValue" placeholder="1">
+                                <input type="text" id="minValue" placeholder="1" inputmode="numeric">
                             </label>
                             <label>
                                 <span>
                                     VALOR MAX
                                 </span>
-                                <input type="text" id="maxValue" placeholder="100">
+                                <input type="text" id="maxValue" placeholder="100" inputmode="numeric">
                             </label>
                         </div>
 
@@ -91,14 +91,17 @@
                 </section>
                 
                 <section class="result" hidden>
+                    
                     <header class="header-result">
                         <h2>
                             RESULTADO DO SORTEIO
                         </h2>
-                        <p>
+                        <p class="result-count">
                             1° RESULTADO
                         </p>
                     </header>
+
+                    
 
                     <ul class="result-list">
                     </ul>
@@ -114,6 +117,13 @@
                             SORTEAR NOVAMENTE
                         </span>
                         <img src="assets/icons/repeat.svg" alt="">
+                    </button>
+
+                    <button class="btn back">
+                        <img src="assets/icons/arrow-to-right.svg" alt="">
+                        <span>
+                            VOLTAR
+                        </span>
                     </button>
 
                 </section>
@@ -149,15 +159,15 @@
 
         </main>
 
-        <aside class="toast-notification toast-off" role="status">
-            <img src="assets/icons/warning.svg" alt="ícone de alerta">
-            <p class="msg-toast">Item removido com sucesso</p>
-            <button class="close-toast">
-                <img src="assets/icons/delete.svg" alt="ícone de fechar">
-            </button>
-        </aside>
-
+        
     </div>
     
+    <aside class="toast-notification toast-off" role="status">
+        <img src="assets/icons/warning.svg" alt="ícone de alerta">
+        <p class="msg-toast">Item removido com sucesso</p>
+        <button class="close-toast">
+            <img src="assets/icons/delete.svg" alt="ícone de fechar">
+        </button>
+    </aside>
 </body>
 </html>

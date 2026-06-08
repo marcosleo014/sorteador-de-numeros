@@ -9,7 +9,8 @@ li {
 
 li span {
     display: block;
-    width: 80px;
+    width: 100%;
+    min-width: 80px;
     height: 80px;
     background-color: var(--background-brand);
     border-radius: 28px;
@@ -25,13 +26,13 @@ li span {
 
 @keyframes backgroundNumber {
     0%, 20% {
-        transform: translate(50%, 50%) rotate(0);
+        transform: translate(50%, 50%) rotate(0deg);
     }
     70%, 90% {
-        transform:  translate(50%, 50%) rotate(270deg);
+        transform:  translate(50%, 50%) rotate(360deg);
     }
     100% {
-        transform:  translate(50%, 50%) rotate(270deg) scale(0);
+        transform:  translate(50%, 50%) rotate(360deg) scale(0);
     }
 }
 @keyframes number {

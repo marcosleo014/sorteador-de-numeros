@@ -161,6 +161,8 @@ body {
 
 /* ---------------------- section result ---------------------- */
 .result {
+    padding-top: 30px;
+    position: relative;
     .header-result {
     text-align: center;
         h2 {
@@ -179,7 +181,8 @@ body {
         gap: 10px;
         padding-block: 40px;
         li {
-            padding: 5px 20px;
+            padding: 5px 5px;
+            margin-inline: 10px;
             font: 700 48px/150% var(--ff-roboto-mono);
             color: var(--content-brand);
         }
@@ -198,6 +201,18 @@ body {
     .draw-repeat {
         display: none;
     }
+
+    .back {
+        margin-top: 30px;
+        margin-inline: auto;
+        width: auto;
+        padding: 10px;
+        border-radius: 999px;
+        font-size: 15px;
+        img {
+            transform: rotate(180deg);
+        }
+    }
 }
 
 /* -------------------- section faq ------------ */
@@ -205,7 +220,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 36px;
-    margin-block: 70px 90px;
+    margin-block: 25px 90px;
     h2 {
         font: var(--label-lg);
         color: var(--content-primary);
@@ -227,21 +242,22 @@ body {
 /* --------------- notificaion ----------- */
 .toast-notification {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: min(100%, 390px);
     gap: 8px;
     padding: 12px;
     border-radius: 12px;
-    /* width: max-content; */
     position: fixed;
     right: 50%;
-    transform: translateX(50%);
-    top: 50px;
+    bottom: 50px;
+    transform: translateX(50%) scale(1);
+    opacity: 1;
     color: var(--content-primary);
     background-color: rgb(17, 16, 18, 0.95);
     border: 2px solid var(--background-brand);
     
-    transition: transform ease 350ms;
-    transition: opacity ease 450ms;
+    transition: transform ease 350ms, opacity ease 450ms;
     
     p {
         font: var(--overline);
@@ -294,5 +310,11 @@ body {
                 width: 386px;
             }
         }
+    }
+
+    .toast-notification {
+        width: min(100%, 600px);
+        top: 50px;
+        bottom: auto;
     }
 }

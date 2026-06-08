@@ -5,16 +5,22 @@ const repeatCheckbox = document.querySelector('#repeatCheckbox');
 const resultListElement = document.querySelector('.result-list');
 const drawButton = document.querySelector('.btn-draw');
 const drawRepeatButton = document.querySelector('.draw-repeat');
+const backButton = document.querySelector('.back');
 const skipAnimationButton = document.querySelector('.skip-animation');
 const drawSection = document.querySelector('.draw');
 const resultSection = document.querySelector('.result');
 const form = document.querySelector('form');
 const msgToastContainer = document.querySelector('.msg-toast');
 const btnToast = document.querySelector('.close-toast');
+const resultCountElement = document.querySelector('.result-count');
 let timeoutId;
+let resultCount;
 
 drawButton.onclick = (event) => {
     event.preventDefault();
+
+    resultCount = 1;
+    resultCountElement.innerText = '1° RESULTADO';
 
     // Construção do Array com número sorteado
     const drawnNumbers = [];
@@ -22,21 +28,22 @@ drawButton.onclick = (event) => {
     const min = Number(minValueInput.value);
     const max = Number(maxValueInput.value);
 
-    console.log(max == '' || min == '' || quantity == '')
-
     if (quantity == '') {
         toastMsg('Escolha a quantidade de números sorteados');
+        quantityInput.value = '';
         quantityInput.focus();
+
         return;
     }
-    if (min == '') {
+    if (min === '') {
         toastMsg('Determine o valor mínimo para o sorteio');
         minValueInput.focus();
         return;
     }
-    if (max == '') {
+    if (max === '') {
         toastMsg('Determine o valor máximo para o sorteio');
         maxValueInput.focus();
+        maxValueInput.value = '';
         return;
     }
 
@@ -70,10 +77,9 @@ drawButton.onclick = (event) => {
     })
     // -------------------------------------------------
     document.querySelectorAll('li').forEach(li => {
-        //evento que add a class finished quando a animação termina
+        //evento que add a class started quando a animação termina
         li.addEventListener('animationstart', () => {
-            console.log('animação concluída')
-            li.classList.add('finished');
+            li.classList.add('started');
         });
     });
     toggleSections();
@@ -82,35 +88,81 @@ drawButton.onclick = (event) => {
     timeoutId = toggleButton(drawnNumbers.length * 2000);
     document.querySelectorAll('li').forEach((element, index) => {
         startAnimation(element, 2 * index);
-    })
+    });
 };
 
 //  ------- slider para configurar a repetição de números no sorteio
 repeatCheckbox.onchange = (event) => {
     if (repeatCheckbox.checked) {
-        toastMsg('Não será permitido números sorteados repetidos')
+        toastMsg('Não será permitida a repetição de números no sorteio')
     } else {
-        toastMsg('Será permitido números sorteados repetidos')
+        toastMsg('Será permitida a repetição de números no sorteio')
     }
 };
 
-// ----------------- refazer sorteio -----------------------
-drawRepeatButton.onclick = (event) => {
-
+// ----------------- botão de voltar -----------------------
+backButton.onclick = (event) => {
     resultListElement.replaceChildren();
-    toggleButton()
+    clearTimeout(timeoutId);
     toggleSections();
-}
+    if (getComputedStyle(skipAnimationButton).display == 'none') {
+        console.log('trocou de botão');
+        toggleButton();
+    }
+};
 
 // -------------------- pular animação de sorteio ----------------
 skipAnimationButton.onclick = (event) => {
-    document.querySelectorAll('li:not(.finished)').forEach(li => {
+    document.querySelectorAll('li:not(.started)').forEach(li => {
         li.style.animation = 'none';
         li.style.animation = 'skipAnimation 1s both';
         li.firstElementChild.style.animation = 'none';
 
     })
     clearTimeout(timeoutId);
+    toggleButton();
+};
+
+// ------------- botão pra repetir o sorteio -----------
+drawRepeatButton.onclick = (evento) => {
+    event.preventDefault();
+
+    resultCountElement.innerText = `${++resultCount}° RESULTADO`
+
+    clearTimeout(timeoutId);
+    resultListElement.replaceChildren();
+    // Construção do Array com número sorteado
+    const drawnNumbers = [];
+    const quantity = Number(quantityInput.value);
+    const min = Number(minValueInput.value);
+    const max = Number(maxValueInput.value);
+
+    while (drawnNumbers.length < quantity) {
+        const number = generateRandomNumber(min, max);
+        if (repeatCheckbox.checked && drawnNumbers.includes(number)) {
+            continue;
+        };
+        drawnNumbers.push(number);
+    };
+    // --------------------------------------
+
+    // adicionar os números sorteados na ul
+    drawnNumbers.forEach(number => {
+        addDrawnNumber(number);
+    })
+    // -------------------------------------------------
+    document.querySelectorAll('li').forEach(li => {
+        //evento que add a class started quando a animação termina
+        li.addEventListener('animationstart', () => {
+            li.classList.add('started');
+        });
+    });
+
+    // animação do resultado do sorteio
+    timeoutId = toggleButton(drawnNumbers.length * 2000);
+    document.querySelectorAll('li').forEach((element, index) => {
+        startAnimation(element, 2 * index);
+    });
     toggleButton();
 };
 
@@ -127,7 +179,6 @@ skipAnimationButton.onclick = (event) => {
 let toastTimeout;
 
 function toastMsg(msg) {
-    btnToast.closest('aside').style.display = 'flex';
     msgToastContainer.innerText = msg;
     const toastContainer = msgToastContainer.closest('.toast-notification');
     toastContainer.classList.remove('toast-off');
@@ -139,7 +190,7 @@ function toastMsg(msg) {
 
 // --------------- button close of toast ----------------
 btnToast.addEventListener('click', () => {
-    btnToast.closest('aside').style.display = 'none'
+    btnToast.closest('aside').classList.add('toast-off')
 })
 
 function generateRandomNumber(min, max) {
